@@ -1,12 +1,38 @@
+#!/bin/bash
+
+discoDuroEst(){
+	  espLibre=$(df -h /mnt/c)
+	  espOcupado=$(du -sh /mnt/c)
+	  masGrande=$(ls -S /mnt/c | head -n 1)
+	  echo "el espacio libre es $espLibre"
+	  echo "el espacio ocupado es $espOcupado"
+	  echo "el archivo mas grande del disco es $masGrande"
+
+}
+
+
+
+renomBck(){
+	read -p "Ingrese ruta de la carpeta: " carpRenom
+	for i in "$carpRenom"/*; do
+		mv "$i" "${i}bck"
+		echo "renombre "$i" -> "${i}bck""
+	done
+}
+
+
+
 propCarpeta(){
-        read -p "Ingrese ruta de la carpeta" carpProp	
-	cantArchivos=$("$carpProp" | ls | wc -l)
-	cantSubCarp=$("$carpProp" | ls -R | wc -l)
+        read -p "Ingrese ruta de la carpeta: " carpProp	
+	cantArchivos=$(ls "$carpProp" | wc -l)
+	cantSubCarp=$(ls "$carpProp"/*/ | wc -l)
 	echo "la cantidad de archivos es de $cantArchivos"
         echo "la cantidad de elementos en las subcarpetas es de $cantSubCarp"
-	archivosTot = $("$carpProp" | ls )
-	echo "el archivo mas pesado pesa $("$archivosTot" | sort -n | head -n 1)"
-	echo "el archivo menos pesado pesa $("$archivosTot" | sort -nr | tail -n 1)"
+	archivosTot=$(ls -S "$carpProp")
+	masPesado=$(echo "$archivosTot" | head -n 1)
+	menosPesado=$(echo "$archivosTot" | tail -n 1)
+	echo "el archivo mas pesado es $masPesado"
+	echo "el archivo menos pesado es $menosPesado"
 }	
 
 
