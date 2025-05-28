@@ -64,24 +64,14 @@ buscadorPalabra(){
 }
 
 discoDuroEst(){
-    echo "======================="
-    disco="/mnt/c"
-    if df -h "$disco" &>/dev/null; then
-        espLibre=$(df -h "$disco" | tail -n 1 | tr -s ' ' | cut -d" " -f4)
-        espOcupado=$(df -h "$disco" | tail -n 1 | tr -s ' ' | cut -d" " -f3)
-        if ls "$disco" &>/dev/null; then
-            masGrande=$(ls -S "$disco" | head -n 1)
-        else
-            masGrande="No se pudo acceder al directorio para listar archivos."
-        fi
-        echo "Espacio libre: $espLibre"
-        echo "Espacio ocupado: $espOcupado"
-        echo "Archivo más grande: $masGrande"
-    else
-        echo "No se pudo acceder al disco '$disco'."
-        echo "Esto puede deberse a que no está montado o a permisos insuficientes."
-    fi
-    echo "======================="
+	  echo "======================="
+	  espLibre=$(df -h /mnt/c | tail -n 1 | tr -s ' ' | cut -d" " -f4)
+	  espOcupado=$(df -h /mnt/c | tail -n 1 | tr -s ' ' | cut -d" " -f3)
+	  masGrande=$(ls -S /mnt/c | head -n 1)
+	  echo "el espacio libre es $espLibre"
+	  echo "el espacio ocupado es $espOcupado"
+	  echo "el archivo mas grande del disco es $masGrande"
+	  echo "======================="
 }
 
 renomBck(){
