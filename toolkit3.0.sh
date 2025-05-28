@@ -26,7 +26,9 @@ urlTxt(){
         while [ ! -e "$ruta" ] || [ -z "$ruta" ]; do
             echo "La ruta ingresada no existe."
             read -p "Ingrese una ruta válida (o escriba 0 para cancelar): " ruta
-            [ "$ruta" == "0" ] && return 1
+            if [ "$ruta" == "0" ]; then
+                return 1
+            fi
         done
     fi
     echo "$url" >> "${ruta}/paginaweb.txt" 
@@ -50,7 +52,9 @@ buscadorPalabra(){
         while [ ! -e "$carpBusq" ] || [ -z "$carpBusq" ]; do
             echo "La ruta ingresada no existe."
             read -p "Ingrese una ruta válida (o escriba 0 para cancelar): " carpBusq
-            [ "$carpBusq" == "0" ] && return 1
+            if [ "$carpBusq" == "0" ]; then
+                return 1
+            fi
         done
     fi
     read -p "Ingrese una palabra para buscar: " palabra
@@ -64,14 +68,14 @@ buscadorPalabra(){
 }
 
 discoDuroEst(){
-	  echo "======================="
-	  espLibre=$(df -h /mnt/c | tail -n 1 | tr -s ' ' | cut -d" " -f4)
-	  espOcupado=$(df -h /mnt/c | tail -n 1 | tr -s ' ' | cut -d" " -f3)
-	  masGrande=$(ls -S /mnt/c | head -n 1)
-	  echo "el espacio libre es $espLibre"
-	  echo "el espacio ocupado es $espOcupado"
-	  echo "el archivo mas grande del disco es $masGrande"
-	  echo "======================="
+    echo "======================="
+    espLibre=$(df -h /mnt/c | tail -n 1 | tr -s ' ' | cut -d" " -f4)
+    espOcupado=$(df -h /mnt/c | tail -n 1 | tr -s ' ' | cut -d" " -f3)
+    masGrande=$(ls -S /mnt/c | head -n 1)
+    echo "el espacio libre es $espLibre"
+    echo "el espacio ocupado es $espOcupado"
+    echo "el archivo mas grande del disco es $masGrande"
+    echo "======================="
 }
 
 renomBck(){
@@ -82,7 +86,9 @@ renomBck(){
         while [ ! -e "$carpRenom" ] || [ -z "$carpRenom" ]; do
             echo "La ruta ingresada no existe."
             read -p "Ingrese una ruta válida (o escriba 0 para cancelar): " carpRenom
-            [ "$carpRenom" == "0" ] && return 1
+            if [ "$carpRenom" == "0" ]; then
+                return 1
+            fi
         done
     fi
     for i in "$carpRenom"/*; do
@@ -100,7 +106,9 @@ propCarpeta(){
         while [ ! -e "$carpProp" ] || [ -z "$carpProp" ]; do
             echo "La ruta ingresada no existe."
             read -p "Ingrese una ruta válida (o escriba 0 para cancelar): " carpProp
-            [ "$carpProp" == "0" ] && return 1
+            if [ "$carpProp" == "0" ]; then
+                return 1
+            fi
         done
     fi
     cantArchivos=$(find "$carpProp" -maxdepth 1 -type f | wc -l)
