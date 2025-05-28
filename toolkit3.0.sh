@@ -119,7 +119,6 @@ propCarpeta(){
     echo "======================="
 }
 
-# Menú principal
 while true ; do
     echo "======================="
     echo "          MENÚ         "
